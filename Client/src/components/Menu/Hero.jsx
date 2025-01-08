@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "../Menu/Hero.css";
+import "../Menu/Hero.css";  // Import the updated CSS
 
 const Hero = () => {
   const [formData, setFormData] = useState({
@@ -25,13 +25,17 @@ const Hero = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/submit-form", {
+      // Log the form data before sending it
+      console.log("Submitting data:", formData);
+
+      const response = await axios.post("http://localhost:5001/submit-form", {
         ...formData,
         date: formData.date ? formData.date.toISOString().split("T")[0] : null,
       });
+
       alert(response.data.message);
     } catch (error) {
-      console.error(error);
+      console.error("Error submitting form:", error);
       alert("Error saving data!");
     }
   };
@@ -47,6 +51,7 @@ const Hero = () => {
           placeholder="Enter Vendor Name"
           value={formData.vendor}
           onChange={handleChange}
+          className="vendor-name"  // New class for styling
           required
         />
 
@@ -56,6 +61,7 @@ const Hero = () => {
           name="product"
           value={formData.product}
           onChange={handleChange}
+          className="product-list"  // New class for styling
           required
         >
           <option value="">Select Product</option>
@@ -72,22 +78,23 @@ const Hero = () => {
           <option value="medicine">Medicine</option>
         </select>
 
-        <label htmlFor="date">Date, Month, Year:</label>
-        <DatePicker
-          selected={formData.date}
-          onChange={handleDateChange}
-          dateFormat="dd/MM/yyyy"
-          placeholderText="Click to select a date"
-          id="date"
-          required
-        />
+        <label htmlFor="date">Date:</label>
+        <div className="date-picker-wrapper">
+          <DatePicker
+            selected={formData.date}
+            onChange={handleDateChange}
+            dateFormat="dd/MM/yyyy"
+            placeholderText="Click to select a date"
+            required
+          />
+        </div>
 
         <label htmlFor="amount">Amount:</label>
         <input
           type="number"
           id="amount"
           name="amount"
-          placeholder="Enter amount"
+          placeholder="Enter Amount"
           value={formData.amount}
           onChange={handleChange}
           required
