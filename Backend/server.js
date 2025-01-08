@@ -1,0 +1,49 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const fs = require("fs");
+const XLSX = require("xlsx");
+
+const app = express();
+const PORT = 5000;
+
+app.use(cors());
+app.use(bodyParser.json());
+
+// Endpoint to handle form submissions
+app.post("/submit-form", (req, res) => {
+  const formData = req.body;
+
+  // File path for the Excel file
+  const filePath = "./data.xlsx";
+
+  // Check if the file exists, or create a new workbook
+  let workbook;
+  if (fs.existsSync(filePath)) {
+    workbook = XLSX.readFile(filePath);
+  } else {
+    workbook = XLSX.utils.book_new();
+  }
+
+  // Get the sheet or create a new one
+  const sheetName = "Form Data";
+  let worksheet = workbook.Sheets[sheetName];
+  let data = worksheet ? XLSX.utils.sheet_to_json(worksheet) : [];
+
+  // Add the new form data
+  data.push(formData);
+
+  // Convert the data back to a worksheet
+  worksheet = XLSX.utils.json_to_sheet(data);
+  workbook.Sheets[sheetName] = worksheet;
+
+  // Save the workbook to a file
+  XLSX.writeFile(workbook, filePath);
+
+  res.status(200).json({ message: "Data saved to Excel successfully!" });
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
