@@ -10,60 +10,52 @@ const PORT = process.env.PORT || 5001;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Utility function to format date to "yyyy-mm" for monthly report
-const formatDate = (date) => {
-  const d = new Date(date);
-  return `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, "0")}`;
-};
+// Endpoint to handle form submissions
+app.post("/submit-form", (req, res) => {
+  const formData = req.body;
 
-// Utility function to generate report
-const generateReport = (data, type) => {
-  const filteredData = [];
+  // Log the incoming form data to verify it's correct
+  console.log("Received form data:", formData);
 
-  if (type === "monthly") {
-    // Filter by month
-    const currentMonth = formatDate(new Date());
-    filteredData.push(...data.filter((entry) => formatDate(entry.date) === currentMonth));
-  } else if (type === "product") {
-    // Filter by product
-    const product = "kirana"; // Example, can pass as parameter
-    filteredData.push(...data.filter((entry) => entry.product === product));
+  // Update file path to the full path of your xlxl folder on desktop
+  const filePath = "/Users/niteshsahu/Desktop/xlxl/data.xlsx"; // <-- Your path here
+
+  // Log the file path to check if it's correct
+  console.log("Saving to Excel file:", filePath);
+
+  try {
+    // Check if the file exists, or create a new workbook
+    let workbook;
+    if (fs.existsSync(filePath)) {
+      workbook = XLSX.readFile(filePath);
+    } else {
+      workbook = XLSX.utils.book_new();
+    }
+
+    // Get the sheet or create a new one
+    const sheetName = "Form Data";
+    let worksheet = workbook.Sheets[sheetName];
+    let data = worksheet ? XLSX.utils.sheet_to_json(worksheet) : [];
+
+    // Add the new form data
+    data.push(formData);
+
+    // Convert the data back to a worksheet
+    worksheet = XLSX.utils.json_to_sheet(data);
+    workbook.Sheets[sheetName] = worksheet;
+
+    // Save the workbook to a file
+    XLSX.writeFile(workbook, filePath);
+
+    // Send success response
+    res.status(200).json({ message: "Data saved to Excel successfully!" });
+  } catch (error) {
+    // Log the error if something goes wrong
+    console.error("Error saving data:", error);
+
+    // Send failure response with error message
+    res.status(500).json({ message: "Error saving data!", error: error.message });
   }
-
-  // Convert to worksheet
-  const worksheet = XLSX.utils.json_to_sheet(filteredData);
-  return worksheet;
-};
-
-// Endpoint to generate report
-app.get("/generate-report", (req, res) => {
-  const filePath = "/Users/niteshsahu/Desktop/xlxl/data.xlsx";
-
-  // Check if the file exists
-  if (!fs.existsSync(filePath)) {
-    return res.status(404).json({ message: "Excel file not found!" });
-  }
-
-  // Read the workbook and sheet
-  const workbook = XLSX.readFile(filePath);
-  const sheetName = "Form Data";
-  const worksheet = workbook.Sheets[sheetName];
-
-  // Convert sheet data to JSON
-  let data = XLSX.utils.sheet_to_json(worksheet);
-
-  // Generate report (example for monthly)
-  const monthlyReport = generateReport(data, "monthly");
-
-  // Create a new workbook for report
-  const newWorkbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(newWorkbook, monthlyReport, "Monthly Report");
-
-  // Save the report to a new file
-  const reportPath = "/Users/niteshsahu/Desktop/xlxl/monthly_report.xlsx";
-  XLSX.writeFile(newWorkbook, reportPath);
-
-  res.status(200).json({ message: "Report generated successfully!", reportPath });
 });
 
 // Start the server
