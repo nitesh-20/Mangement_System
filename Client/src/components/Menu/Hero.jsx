@@ -43,6 +43,7 @@ const Hero = () => {
   return (
     <div className="menu">
       <form className="menu-form" onSubmit={handleSubmit}>
+        <h2>Product List</h2> {/* Moved Product List heading here */}
         <label htmlFor="vendor">Vendor Name:</label>
         <input
           type="text"
@@ -55,7 +56,7 @@ const Hero = () => {
           required
         />
 
-        <label htmlFor="product">Product List:</label>
+        <label htmlFor="product">Select Product:</label>
         <select
           id="product"
           name="product"

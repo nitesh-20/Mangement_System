@@ -1,34 +1,36 @@
-.menu {
+.guest-form-container {
   margin: 0;
   padding: 2rem;
   background-color: #f0f0f0;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 800px;
+  max-width: 600px; /* Keeps the width as required */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  height: auto; /* Ensures it doesn't stretch vertically */
+  padding-bottom: 1rem; /* Adds space at the bottom */
+  box-sizing: border-box;
 }
 
-.menu-form {
+.guest-form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.menu-form label {
+.guest-form label {
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
 
-.menu-form select,
-.menu-form input {
+.guest-form input {
   margin-bottom: 1rem;
   padding: 0.5rem;
   border: 1px solid #ccc;
@@ -36,14 +38,9 @@
   width: 100%;
 }
 
-.menu-form input:focus,
-.menu-form select:focus {
+.guest-form input:focus {
   outline: none;
   border-color: #4CAF50;
-}
-
-.menu-form input[type="number"] {
-  -moz-appearance: textfield;
 }
 
 .submit-button {
@@ -53,6 +50,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 100%; /* Make the button span the entire width */
 }
 
 .submit-button:hover {
@@ -62,30 +60,4 @@
 .submit-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-}
-
-.react-datepicker-wrapper input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-  font-size: 16px;
-}
-
-/* Adjustments for vendor name and product selection */
-.vendor-name,
-.product-list {
-  margin-bottom: 1rem;
-}
-
-.date-picker-wrapper {
-  margin-bottom: 1rem;
-}
-
-/* Added style for Product List heading */
-h2 {
-  margin-top: 0;
-  color: black;
-  text-align: center;
-  font-size: 1.5rem; /* Increased font size */
 }
