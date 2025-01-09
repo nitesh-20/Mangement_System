@@ -9,6 +9,7 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
+        <Route path="/" element={<Guest />} /> {/* Default route for Guest form */}
         <Route path="/guest-details" element={<Guest />} />
         <Route path="/product-details" element={<Product />} />
       </Routes>
