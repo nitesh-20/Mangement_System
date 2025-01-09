@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "../Menu/Hero.css";  // Import the updated CSS
+import "../Menu/Product.css";  // Import the updated CSS
 
-const Hero = () => {
+const Product = () => {
   const [formData, setFormData] = useState({
     vendor: "",
     product: "",
@@ -25,25 +25,25 @@ const Hero = () => {
     e.preventDefault();
 
     try {
-      // Log the form data before sending it
       console.log("Submitting data:", formData);
 
-      const response = await axios.post("http://localhost:5001/submit-form", {
+      // Send data to backend
+      const response = await axios.post("http://localhost:5001/api/product/submit-product", {
         ...formData,
         date: formData.date ? formData.date.toISOString().split("T")[0] : null,
       });
 
-      alert(response.data.message);
+      alert(response.data.message);  // Success message
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("Error saving data!");
+      alert("Error saving product data!");  // Error message
     }
   };
 
   return (
     <div className="menu">
       <form className="menu-form" onSubmit={handleSubmit}>
-        <h2>Product List</h2> {/* Moved Product List heading here */}
+        <h2>Product List</h2> {/* Product List heading */}
         <label htmlFor="vendor">Vendor Name:</label>
         <input
           type="text"
@@ -52,7 +52,7 @@ const Hero = () => {
           placeholder="Enter Vendor Name"
           value={formData.vendor}
           onChange={handleChange}
-          className="vendor-name"  // New class for styling
+          className="vendor-name"
           required
         />
 
@@ -62,7 +62,7 @@ const Hero = () => {
           name="product"
           value={formData.product}
           onChange={handleChange}
-          className="product-list"  // New class for styling
+          className="product-list"
           required
         >
           <option value="">Select Product</option>
@@ -109,4 +109,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Product;

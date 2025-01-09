@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../Menu/Guest.css";
 
 const Guest = () => {
@@ -19,10 +20,16 @@ const Guest = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Guest Details Submitted:", guestData);
-    alert("Guest details saved successfully!");
+    try {
+      // Send data to backend
+      const response = await axios.post("http://localhost:5001/api/guest/submit-guest", guestData);
+      alert(response.data.message); // Success message
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Error saving guest details!");
+    }
   };
 
   return (

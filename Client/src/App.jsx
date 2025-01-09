@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Header/Nav";
 import Guest from "./components/Menu/Guest";
-import Product from "./components/Menu/Hero";
+import Product from "./components/Menu/Product";
 import Report from "./components/Menu/Report"; // Import the Report component
 
 const App = () => {
