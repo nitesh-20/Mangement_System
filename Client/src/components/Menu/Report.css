@@ -1,0 +1,112 @@
+.report-container {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 1200px;
+  }
+  
+  .report-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+  }
+  
+  .report-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  
+  .report-navigation button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .report-navigation button:hover {
+    background-color: #45a049;
+  }
+  
+  .report-navigation button:focus {
+    outline: none;
+  }
+  
+  .report-section {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .report-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+  
+  .report-table th,
+  .report-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .report-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .report-table td {
+    background-color: #f9f9f9;
+  }
+  
+  .report-table tr:hover td {
+    background-color: #f1f1f1;
+  }
+  
+  .report-summary {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .report-summary p {
+    margin: 0.5rem 0;
+  }
+  
+  .report-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+  }
+  
+  .report-footer button {
+    padding: 0.8rem 2rem;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .report-footer button:hover {
+    background-color: #1e88e5;
+  }
+  

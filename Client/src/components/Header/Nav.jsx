@@ -21,6 +21,12 @@ const Navbar = () => {
         >
           Product Details
         </button>
+        <button
+          onClick={() => navigate("/report")}
+          className="navbar-button"
+        >
+          Report
+        </button>
       </div>
     </nav>
   );

@@ -3,15 +3,17 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Header/Nav";
 import Guest from "./components/Menu/Guest";
 import Product from "./components/Menu/Hero";
+import Report from "./components/Menu/Report"; // Import the Report component
 
 const App = () => {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Guest />} /> {/* Default route for Guest form */}
+        <Route path="/" element={<Guest />} />
         <Route path="/guest-details" element={<Guest />} />
         <Route path="/product-details" element={<Product />} />
+        <Route path="/report/*" element={<Report />} /> 
       </Routes>
     </Router>
   );
