@@ -6,10 +6,16 @@ const exceljs = require('exceljs');
 exports.submitGuest = async (req, res) => {
   const guestData = req.body;
 
-  // Path to the Excel file
-  const filePath = path.join(__dirname, '../data/xlxl/guestData.xlsx');
+  // Use your specified path
+  const directoryPath = '/Users/niteshsahu/Desktop/Management_System/Backend/Data/xlxl';
+  const filePath = path.join(directoryPath, 'guestData.xlsx');
 
   try {
+    // Ensure directory exists
+    if (!fs.existsSync(directoryPath)) {
+      fs.mkdirSync(directoryPath, { recursive: true });
+    }
+
     const workbook = new exceljs.Workbook();
     let sheet;
 
