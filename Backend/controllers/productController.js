@@ -26,25 +26,31 @@ exports.submitProduct = async (req, res) => {
       if (!sheet) {
         sheet = workbook.addWorksheet('ProductData'); // Create worksheet if not found
         sheet.columns = [
-          { header: 'Vendor', key: 'vendor' },
-          { header: 'Product', key: 'product' },
-          { header: 'Date', key: 'date' },
-          { header: 'Amount', key: 'amount' },
+          { header: 'Vendor', key: 'vendor', width: 20 },
+          { header: 'Product', key: 'product', width: 20 },
+          { header: 'Date', key: 'date', width: 15 },
+          { header: 'Amount', key: 'amount', width: 10 },
         ];
       }
     } else {
-      sheet = workbook.addWorksheet('ProductData'); // Create a new file and worksheet
+      // Create a new file and worksheet
+      sheet = workbook.addWorksheet('ProductData');
       sheet.columns = [
-        { header: 'Vendor', key: 'vendor' },
-        { header: 'Product', key: 'product' },
-        { header: 'Date', key: 'date' },
-        { header: 'Amount', key: 'amount' },
+        { header: 'Vendor', key: 'vendor', width: 20 },
+        { header: 'Product', key: 'product', width: 20 },
+        { header: 'Date', key: 'date', width: 15 },
+        { header: 'Amount', key: 'amount', width: 10 },
       ];
     }
 
-    // Append new data to the worksheet
+    // Add new data to the worksheet
     console.log('Adding row:', productData);
-    sheet.addRow(productData);
+    sheet.addRow({
+      vendor: productData.vendor,
+      product: productData.product,
+      date: productData.date,
+      amount: parseFloat(productData.amount),
+    }).commit(); // Commit ensures the row is added properly
 
     // Save the updated Excel file
     await workbook.xlsx.writeFile(filePath);

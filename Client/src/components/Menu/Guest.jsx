@@ -23,12 +23,17 @@ const Guest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send data to backend
+      // Validate formData before sending
+      if (!guestData.name || !guestData.roomNumber || !guestData.checkIn || !guestData.checkOut) {
+        alert("Please fill all required fields.");
+        return;
+      }
+
       const response = await axios.post("http://localhost:5001/api/guest/submit-guest", guestData);
       alert(response.data.message); // Success message
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Error saving guest details!");
+      console.error("Error submitting form:", error.message);
+      alert("Error saving guest details! Ensure the backend is running and accessible.");
     }
   };
 

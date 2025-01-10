@@ -25,18 +25,21 @@ const Product = () => {
     e.preventDefault();
 
     try {
-      console.log("Submitting data:", formData);
+      // Validate formData before sending
+      if (!formData.vendor || !formData.product || !formData.amount || !formData.date) {
+        alert("Please fill all required fields.");
+        return;
+      }
 
-      // Send data to backend
       const response = await axios.post("http://localhost:5001/api/product/submit-product", {
         ...formData,
         date: formData.date ? formData.date.toISOString().split("T")[0] : null,
       });
 
-      alert(response.data.message);  // Success message
+      alert(response.data.message); // Success message
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Error saving product data!");  // Error message
+      console.error("Error submitting form:", error.message);
+      alert("Error saving product data! Ensure the backend is running and accessible.");
     }
   };
 
