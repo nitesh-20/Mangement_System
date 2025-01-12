@@ -28,3 +28,4 @@ Thumbs.db
 # Optional files
 package-lock.json
 yarn.lock
+Backend/credentials/google-credentials.json
