@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "../Menu/Product.css";  // Import the updated CSS
+import "../Menu/Product.css"; // Import updated CSS
 
 const Product = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +14,10 @@ const Product = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleDateChange = (date) => {
@@ -23,30 +26,33 @@ const Product = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      // Validate formData before sending
+      // Validate required fields
       if (!formData.vendor || !formData.product || !formData.amount || !formData.date) {
-        alert("Please fill all required fields.");
+        alert("Please fill in all required fields.");
         return;
       }
 
-      const response = await axios.post("http://localhost:5001/api/product/submit-product", {
-        ...formData,
-        date: formData.date ? formData.date.toISOString().split("T")[0] : null,
-      });
+      // Send data to backend
+      const response = await axios.post(
+        "http://localhost:5001/api/product/submit-product",
+        {
+          ...formData,
+          date: formData.date ? formData.date.toISOString().split("T")[0] : null,
+        }
+      );
 
       alert(response.data.message); // Success message
     } catch (error) {
       console.error("Error submitting form:", error.message);
-      alert("Error saving product data! Ensure the backend is running and accessible.");
+      alert("Error saving product data! Please try again.");
     }
   };
 
   return (
     <div className="menu">
       <form className="menu-form" onSubmit={handleSubmit}>
-        <h2>Product List</h2> {/* Product List heading */}
+        <h2>Product List</h2>
         <label htmlFor="vendor">Vendor Name:</label>
         <input
           type="text"

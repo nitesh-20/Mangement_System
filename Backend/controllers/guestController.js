@@ -2,7 +2,7 @@ const { google } = require('googleapis');
 const path = require('path');
 
 // Load service account credentials
-const credentialsPath = path.join(__dirname, '../credentials.json');
+const credentialsPath = path.join(__dirname, '../credentials/google-credentials.json');
 const credentials = require(credentialsPath);
 
 // Configure Google Sheets API
@@ -13,16 +13,17 @@ const auth = new google.auth.GoogleAuth({
 
 const sheets = google.sheets({ version: 'v4', auth });
 
-const SPREADSHEET_ID = '1lDXCVKOrRgZJ8tCxuwk1wTmJUYMlclaGOJNO_SSxGwM'; // Replace with your sheet ID
+// Replace with your Google Sheets ID
+const SPREADSHEET_ID = '1lDXCVKOrRgZJ8tCxuwk1wTmJUYMlclaGOJNO_SSxGwM';
 
 exports.submitGuest = async (req, res) => {
   const guestData = req.body;
 
   try {
-    // Append new row to the sheet
+    // Append new row to Google Sheets
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'Sheet1', // Replace with your sheet name
+      range: 'GuestData!A:F', // Replace with the actual sheet name
       valueInputOption: 'USER_ENTERED',
       resource: {
         values: [
