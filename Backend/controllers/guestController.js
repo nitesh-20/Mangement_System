@@ -23,7 +23,7 @@ exports.submitGuest = async (req, res) => {
     // Append new row to Google Sheets
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'GuestData!A:F', // Replace with the actual sheet name
+      range: 'Sheet1!A:F', // Update to match the actual sheet name (default is usually "Sheet1")
       valueInputOption: 'USER_ENTERED',
       resource: {
         values: [
