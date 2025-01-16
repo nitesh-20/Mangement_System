@@ -13,7 +13,7 @@ const auth = new google.auth.GoogleAuth({
 
 const sheets = google.sheets({ version: 'v4', auth });
 
-// Replace with your Google Sheets ID
+// Replace with your actual Google Sheets ID
 const SPREADSHEET_ID = '1lDXCVKOrRgZJ8tCxuwk1wTmJUYMlclaGOJNO_SSxGwM';
 
 exports.submitProduct = async (req, res) => {
@@ -23,7 +23,7 @@ exports.submitProduct = async (req, res) => {
     // Append new row to Google Sheets
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'ProductData!A1:D', // Ensure this matches the actual sheet name
+      range: 'ProductData!A1:D', // Ensure this is the correct range
       valueInputOption: 'USER_ENTERED',
       resource: {
         values: [
@@ -37,7 +37,7 @@ exports.submitProduct = async (req, res) => {
       },
     });
 
-    console.log('Row added to ProductData:', response.data);
+    console.log('Row added:', response.data);
     res.status(200).json({ message: 'Product details saved successfully!' });
   } catch (error) {
     console.error('Error saving product data:', error);
