@@ -19,6 +19,7 @@ const SPREADSHEET_ID = '1lDXCVKOrRgZJ8tCxuwk1wTmJUYMlclaGOJNO_SSxGwM';
 exports.submitProduct = async (req, res) => {
   const productData = req.body;
 
+  
   try {
     // Append new row to Google Sheets
     const response = await sheets.spreadsheets.values.append({
