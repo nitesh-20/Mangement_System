@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Header/Nav";
 import Guest from "./components/Menu/Guest";
 import Product from "./components/Menu/Product";
-import Report from "./components/Menu/Report"; // Import the Report component
+import ShowGuestData from "./components/Menu/ShowGuestData";  
+import ShowProductData from "./components/Menu/ShowProduct";  
 
 const App = () => {
   return (
@@ -13,7 +14,8 @@ const App = () => {
         <Route path="/" element={<Guest />} />
         <Route path="/guest-details" element={<Guest />} />
         <Route path="/product-details" element={<Product />} />
-        <Route path="/report/*" element={<Report />} /> 
+        <Route path="/show-guest-data" element={<ShowGuestData />} />  
+        <Route path="/show-product" element={<ShowProductData />} /> 
       </Routes>
     </Router>
   );

@@ -1,115 +1,102 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "../Menu/Guest.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import './Guest.css'; // Assuming the CSS is saved as Guest.css in the same directory
 
 const Guest = () => {
   const [guestData, setGuestData] = useState({
-    name: "",
-    roomNumber: "",
-    checkIn: "",
-    checkOut: "",
-    children: "",
-    contact: "",
+    name: '',
+    roomNumber: '',
+    checkIn: '',
+    checkOut: '',
+    children: '',
+    contact: '',
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setGuestData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setGuestData({ ...guestData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Validate required fields
-      if (!guestData.name || !guestData.roomNumber || !guestData.checkIn || !guestData.checkOut) {
-        alert("Please fill in all required fields.");
-        return;
-      }
-
-      // Send data to backend
-      const response = await axios.post(
-        "http://localhost:5001/api/guest/submit-guest",
-        guestData
-      );
-
-      alert(response.data.message); // Success message
+      const response = await axios.post('http://localhost:5000/submit-guest', guestData);
+      alert(response.data.message);
+      setGuestData({
+        name: '',
+        roomNumber: '',
+        checkIn: '',
+        checkOut: '',
+        children: '',
+        contact: '',
+      });
     } catch (error) {
-      console.error("Error submitting form:", error.message);
-      alert("Error saving guest details! Please try again.");
+      console.error('Error submitting guest details:', error);
+      alert('Failed to submit guest details.');
     }
   };
 
   return (
-    <div className="menu">
-      <h2>Guest Details</h2>
-      <form className="menu-form" onSubmit={handleSubmit}>
-        <label>
-          Guest Name:
-          <input
-            type="text"
-            name="name"
-            value={guestData.name}
-            onChange={handleChange}
-            placeholder="Enter guest name"
-            required
-          />
-        </label>
-        <label>
-          Room Number:
-          <input
-            type="text"
-            name="roomNumber"
-            value={guestData.roomNumber}
-            onChange={handleChange}
-            placeholder="Enter room number"
-            required
-          />
-        </label>
-        <label>
-          Check-In Date:
-          <input
-            type="date"
-            name="checkIn"
-            value={guestData.checkIn}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Check-Out Date:
-          <input
-            type="date"
-            name="checkOut"
-            value={guestData.checkOut}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Number of Guests:
-          <input
-            type="number"
-            name="children"
-            value={guestData.children}
-            onChange={handleChange}
-            placeholder="Enter number of children"
-            min="0"
-          />
-        </label>
-        <label>
-          Contact:
-          <input
-            type="tel"
-            name="contact"
-            value={guestData.contact}
-            onChange={handleChange}
-            placeholder="Enter contact number"
-            required
-          />
-        </label>
+    <div className="guest-form-container">
+      <h2>Submit Guest Details</h2>
+      <form className="guest-form" onSubmit={handleSubmit}>
+        <label htmlFor="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Name"
+          value={guestData.name}
+          onChange={handleChange}
+          required
+        />
+        <label htmlFor="roomNumber">Room Number</label>
+        <input
+          type="number"
+          name="roomNumber"
+          id="roomNumber"
+          placeholder="Room Number"
+          value={guestData.roomNumber}
+          onChange={handleChange}
+          required
+        />
+        <label htmlFor="checkIn">Check-In</label>
+        <input
+          type="datetime-local"
+          name="checkIn"
+          id="checkIn"
+          value={guestData.checkIn}
+          onChange={handleChange}
+          required
+        />
+        <label htmlFor="checkOut">Check-Out</label>
+        <input
+          type="datetime-local"
+          name="checkOut"
+          id="checkOut"
+          value={guestData.checkOut}
+          onChange={handleChange}
+          required
+        />
+        <label htmlFor="children">Number of Children</label>
+        <input
+          type="number"
+          name="children"
+          id="children"
+          placeholder="Number of Children"
+          value={guestData.children}
+          onChange={handleChange}
+          required
+        />
+        <label htmlFor="contact">Contact</label>
+        <input
+          type="tel"
+          name="contact"
+          id="contact"
+          placeholder="Contact Number"
+          value={guestData.contact}
+          onChange={handleChange}
+          required
+        />
         <button type="submit" className="submit-button">
           Submit
         </button>

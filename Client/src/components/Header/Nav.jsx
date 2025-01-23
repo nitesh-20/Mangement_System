@@ -22,10 +22,16 @@ const Navbar = () => {
           Product Details
         </button>
         <button
-          onClick={() => navigate("/report")}
+          onClick={() => navigate("/show-guest-data")}
           className="navbar-button"
         >
-          Report
+          Show Guest Data
+        </button>
+        <button
+          onClick={() => navigate("/show-product")}
+          className="navbar-button"
+        >
+          Show Product Data
         </button>
       </div>
     </nav>
