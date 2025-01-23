@@ -19,7 +19,7 @@ const Guest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/submit-guest', guestData);
+      const response = await axios.post('http://localhost:5001/api/guests/add', guestData);
       alert(response.data.message);
       setGuestData({
         name: '',

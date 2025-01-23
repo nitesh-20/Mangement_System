@@ -17,7 +17,7 @@ const Product = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/submit-product', productData);
+      const response = await axios.post('http://localhost:5001/api/products/add', productData);
       alert(response.data.message);
       setProductData({
         vendor: '',
