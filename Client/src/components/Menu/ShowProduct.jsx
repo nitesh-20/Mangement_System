@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './ShowProduct.css'; // Reusing the same CSS for styling
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./ShowProduct.css"; // Create a CSS file for styling if needed
 
 const ShowProductData = () => {
   const [productData, setProductData] = useState([]);
@@ -8,10 +8,10 @@ const ShowProductData = () => {
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/products');
+        const response = await axios.get("http://localhost:5001/api/products"); // Correct endpoint
         setProductData(response.data);
       } catch (error) {
-        console.error('Error fetching product data:', error);
+        console.error("Error fetching product data:", error);
       }
     };
 

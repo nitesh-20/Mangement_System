@@ -14,9 +14,11 @@ app.use(bodyParser.json());
 
 // Import routes
 const guestRoutes = require("./routes/guestRoutes");
+const productRoutes = require("./routes/productRoutes");
 
 // Use the routes
 app.use("/api/guests", guestRoutes);
+app.use("/api/products", productRoutes); // Add this route for products
 
 // Start the server
 app.listen(PORT, () => {
