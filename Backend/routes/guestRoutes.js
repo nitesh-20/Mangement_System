@@ -3,7 +3,7 @@ const router = express.Router();
 const { getAllGuests, addGuest } = require("../models/guestModel");
 
 // Route to get all guest data
-router.get("/get-guest-data", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const guests = await getAllGuests(); // Fetching all guests from DB
     res.json(guests); // Sending data as response

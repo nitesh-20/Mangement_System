@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './ShowGuestData.css'; // Reusing the same CSS for styling
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./ShowGuestData.css";
 
 const ShowGuestData = () => {
   const [guestData, setGuestData] = useState([]);
@@ -8,10 +8,11 @@ const ShowGuestData = () => {
   useEffect(() => {
     const fetchGuestData = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/guests');
+        // Ensure the correct endpoint is used
+        const response = await axios.get("http://localhost:5001/api/guests");
         setGuestData(response.data);
       } catch (error) {
-        console.error('Error fetching guest data:', error);
+        console.error("Error fetching guest data:", error);
       }
     };
 
@@ -38,8 +39,8 @@ const ShowGuestData = () => {
               <tr key={index}>
                 <td>{guest.name}</td>
                 <td>{guest.room_number}</td>
-                <td>{guest.check_in}</td>
-                <td>{guest.check_out}</td>
+                <td>{new Date(guest.check_in).toLocaleString()}</td>
+                <td>{new Date(guest.check_out).toLocaleString()}</td>
                 <td>{guest.children}</td>
                 <td>{guest.contact}</td>
               </tr>
