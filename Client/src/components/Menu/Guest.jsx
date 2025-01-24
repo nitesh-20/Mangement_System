@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './Guest.css'; // Assuming the CSS is saved as Guest.css in the same directory
+import React, { useState } from "react";
+import axios from "axios";
+import "./Guest.css"; // Assuming the CSS is saved as Guest.css in the same directory
 
 const Guest = () => {
   const [guestData, setGuestData] = useState({
-    name: '',
-    roomNumber: '',
-    checkIn: '',
-    checkOut: '',
-    children: '',
-    contact: '',
+    name: "",
+    room_number: "",
+    check_in: "",
+    check_out: "",
+    children: "",
+    contact: "",
   });
 
   const handleChange = (e) => {
@@ -18,20 +18,36 @@ const Guest = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Ensure all fields are filled
+    if (
+      !guestData.name ||
+      !guestData.room_number ||
+      !guestData.check_in ||
+      !guestData.check_out ||
+      !guestData.contact
+    ) {
+      alert("All fields are required!");
+      return;
+    }
+
     try {
-      const response = await axios.post('http://localhost:5001/api/guests/add', guestData);
+      const response = await axios.post(
+        "http://localhost:5001/api/guests/add",
+        guestData
+      );
       alert(response.data.message);
       setGuestData({
-        name: '',
-        roomNumber: '',
-        checkIn: '',
-        checkOut: '',
-        children: '',
-        contact: '',
+        name: "",
+        room_number: "",
+        check_in: "",
+        check_out: "",
+        children: "",
+        contact: "",
       });
     } catch (error) {
-      console.error('Error submitting guest details:', error);
-      alert('Failed to submit guest details.');
+      console.error("Error submitting guest details:", error);
+      alert("Failed to submit guest details. Please try again.");
     }
   };
 
@@ -49,31 +65,31 @@ const Guest = () => {
           onChange={handleChange}
           required
         />
-        <label htmlFor="roomNumber">Room Number</label>
+        <label htmlFor="room_number">Room Number</label>
         <input
           type="number"
-          name="roomNumber"
-          id="roomNumber"
+          name="room_number"
+          id="room_number"
           placeholder="Room Number"
-          value={guestData.roomNumber}
+          value={guestData.room_number}
           onChange={handleChange}
           required
         />
-        <label htmlFor="checkIn">Check-In</label>
+        <label htmlFor="check_in">Check-In</label>
         <input
           type="datetime-local"
-          name="checkIn"
-          id="checkIn"
-          value={guestData.checkIn}
+          name="check_in"
+          id="check_in"
+          value={guestData.check_in}
           onChange={handleChange}
           required
         />
-        <label htmlFor="checkOut">Check-Out</label>
+        <label htmlFor="check_out">Check-Out</label>
         <input
           type="datetime-local"
-          name="checkOut"
-          id="checkOut"
-          value={guestData.checkOut}
+          name="check_out"
+          id="check_out"
+          value={guestData.check_out}
           onChange={handleChange}
           required
         />
@@ -85,7 +101,6 @@ const Guest = () => {
           placeholder="Number of Children"
           value={guestData.children}
           onChange={handleChange}
-          required
         />
         <label htmlFor="contact">Contact</label>
         <input

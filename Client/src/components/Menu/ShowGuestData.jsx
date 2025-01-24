@@ -8,7 +8,7 @@ const ShowGuestData = () => {
   useEffect(() => {
     const fetchGuestData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/get-guest-data');
+        const response = await axios.get('http://localhost:5001/api/guests');
         setGuestData(response.data);
       } catch (error) {
         console.error('Error fetching guest data:', error);
@@ -37,9 +37,9 @@ const ShowGuestData = () => {
             {guestData.map((guest, index) => (
               <tr key={index}>
                 <td>{guest.name}</td>
-                <td>{guest.roomNumber}</td>
-                <td>{guest.checkIn}</td>
-                <td>{guest.checkOut}</td>
+                <td>{guest.room_number}</td>
+                <td>{guest.check_in}</td>
+                <td>{guest.check_out}</td>
                 <td>{guest.children}</td>
                 <td>{guest.contact}</td>
               </tr>

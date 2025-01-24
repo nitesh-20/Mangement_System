@@ -1,12 +1,11 @@
-// routes/guestRoutes.js
 const express = require("express");
 const router = express.Router();
 const { getAllGuests, addGuest } = require("../models/guestModel");
 
 // Route to get all guest data
-router.get("/", async (req, res) => {
+router.get("/get-guest-data", async (req, res) => {
   try {
-    const guests = await getAllGuests(); // Function to fetch data from DB
+    const guests = await getAllGuests(); // Fetching all guests from DB
     res.json(guests); // Sending data as response
   } catch (error) {
     console.error("Error fetching guests:", error); // Log error for debugging
@@ -17,7 +16,7 @@ router.get("/", async (req, res) => {
 // Route to add a new guest
 router.post("/add", async (req, res) => {
   try {
-    await addGuest(req.body); // Function to add data to DB
+    await addGuest(req.body); // Adding new guest to DB
     res.status(200).json({ message: "Guest added successfully" }); // Successful response
   } catch (error) {
     console.error("Error adding guest:", error); // Log error for debugging

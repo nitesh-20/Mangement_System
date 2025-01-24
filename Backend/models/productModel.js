@@ -1,4 +1,3 @@
-// models/productModel.js
 const db = require("../db"); // Import the centralized database connection
 
 // Function to fetch all products

@@ -1,4 +1,3 @@
-// models/guestModel.js
 const db = require("../db"); // Import the centralized database connection
 
 // Function to fetch all guests
@@ -16,13 +15,19 @@ const getAllGuests = () => {
 
 // Function to add a new guest
 const addGuest = (guestData) => {
-  const { name, roomNumber, checkIn, checkOut, children, contact } = guestData; // Ensure consistent field names
+  const { name, room_number, check_in, check_out, children, contact } = guestData;
+
+  // Validation: Ensure all required fields are present
+  if (!name || !room_number || !check_in || !check_out || !contact) {
+    throw new Error("All fields (name, room_number, check_in, check_out, contact) are required");
+  }
+
   const query = `
     INSERT INTO guests (name, room_number, check_in, check_out, children, contact)
     VALUES (?, ?, ?, ?, ?, ?)
   `;
   return new Promise((resolve, reject) => {
-    db.query(query, [name, roomNumber, checkIn, checkOut, children, contact], (err, results) => {
+    db.query(query, [name, room_number, check_in, check_out, children, contact], (err, results) => {
       if (err) {
         console.error("Error inserting guest into database:", err); // Log error for debugging
         return reject(err);
