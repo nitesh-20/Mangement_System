@@ -1,77 +1,78 @@
 /* General table container styling */
 .menu {
-    margin: 0;
-    padding: 2rem;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  /* Report headings */
-  h2 {
-    margin-top: 0;
-    /* margin-bottom: 1.5rem; */
-    padding-top: 5rem;
-    color: black;
-    text-align: center;
-    font-size: 1.8rem;
-    font-weight: bold;
-  }
-  
-  /* Styling for the data table */
-  .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    font-size: 1rem;
-    text-align: left;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .data-table thead {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .data-table th,
-  .data-table td {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-  }
-  
-  .data-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .data-table tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Responsive styling for smaller screens */
-  @media (max-width: 600px) {
-    .menu {
+  margin: 0;
+  padding: 2rem;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10%; /* Adjusted from 50% to prevent overlapping */
+  left: 50%;
+  transform: translate(-50%, 0); /* Changed vertical translation to 0 */
+  max-height: 80%; /* Limit container height to enable scrolling */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+/* Report headings */
+.menu h2 {
+  margin-top: 1rem; /* Add margin to separate from navbar */
+  margin-bottom: 1.5rem;
+  padding-top: 20rem;
+  color: black;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Styling for the data table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 1rem;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.data-table thead {
+  background-color: #4caf50;
+  color: white;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 600px) {
+  .menu {
       max-width: 90%;
       padding: 1rem;
-    }
-  
-    h2 {
+  }
+
+  h2 {
       font-size: 1.5rem;
-    }
-  
-    .data-table th,
-    .data-table td {
+  }
+
+  .data-table th,
+  .data-table td {
       font-size: 0.9rem;
       padding: 0.5rem;
-    }
   }
-  
+}

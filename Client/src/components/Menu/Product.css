@@ -1,11 +1,12 @@
-.menu {
+/* General form container styling */
+.form-container {
   margin: 0;
   padding: 2rem;
   background-color: #f0f0f0;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 800px;
+  max-width: 900px; /* Increased width */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,19 +17,22 @@
   transform: translate(-50%, -50%);
 }
 
-.menu-form {
+/* Form styling */
+.form-container-form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.menu-form label {
+/* Label styling */
+.form-container-form label {
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
 
-.menu-form select,
-.menu-form input {
+/* Input field styling */
+.form-container-form select,
+.form-container-form input {
   margin-bottom: 1rem;
   padding: 0.5rem;
   border: 1px solid #ccc;
@@ -36,17 +40,20 @@
   width: 100%;
 }
 
-.menu-form input:focus,
-.menu-form select:focus {
+/* Input field focus styling */
+.form-container-form input:focus,
+.form-container-form select:focus {
   outline: none;
   border-color: #4CAF50;
 }
 
-.menu-form input[type="number"] {
+/* Specific styling for number input */
+.form-container-form input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.submit-button {
+/* Submit button styling */
+.submit-btn {
   background-color: #4CAF50;
   color: white;
   padding: 0.5rem 1rem;
@@ -55,37 +62,73 @@
   cursor: pointer;
 }
 
-.submit-button:hover {
+/* Submit button hover effect */
+.submit-btn:hover {
   background-color: #45a049;
 }
 
-.submit-button:disabled {
+/* Submit button disabled state */
+.submit-btn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
-.react-datepicker-wrapper input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-  font-size: 16px;
-}
-
-/* Adjustments for vendor name and product selection */
-.vendor-name,
-.product-list {
+/* General styling for input groups */
+.input-group {
   margin-bottom: 1rem;
 }
 
-.date-picker-wrapper {
-  margin-bottom: 1rem;
-}
-
-/* Added style for Product List heading */
+/* Header styling */
 h2 {
   margin-top: 0;
   color: black;
   text-align: center;
   font-size: 1.5rem; /* Increased font size */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 1rem; /* Reduced padding for smaller screens */
+    max-width: 90%;
+  }
+
+  .form-container-form label {
+    font-size: 1rem; /* Adjusted font size for labels */
+  }
+
+  .form-container-form input {
+    font-size: 1rem; /* Adjusted font size for inputs */
+  }
+
+  .submit-btn {
+    padding: 0.5rem 0.8rem; /* Adjusted padding for buttons */
+  }
+
+  h2 {
+    font-size: 1.4rem; /* Adjusted font size for the header */
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 0.8rem; /* Reduced padding for extra small screens */
+    max-width: 95%;
+  }
+
+  .form-container-form label {
+    font-size: 0.9rem; /* Smaller font size for labels */
+  }
+
+  .form-container-form input {
+    font-size: 0.9rem; /* Smaller font size for inputs */
+  }
+
+  .submit-btn {
+    padding: 0.5rem 0.7rem; /* Smaller padding for submit button */
+  }
+
+  h2 {
+    font-size: 1.2rem; /* Smaller header font size */
+  }
 }

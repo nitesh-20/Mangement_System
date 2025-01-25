@@ -32,10 +32,10 @@ const Product = () => {
   };
 
   return (
-    <div className="menu">
+    <div className="form-container">
       <h2>Submit Product Details</h2>
-      <form className="menu-form" onSubmit={handleSubmit}>
-        <div className="vendor-name">
+      <form className="form-container-form" onSubmit={handleSubmit}>
+        <div className="input-group">
           <label htmlFor="vendor">Vendor Name</label>
           <input
             type="text"
@@ -47,7 +47,7 @@ const Product = () => {
             required
           />
         </div>
-        <div className="product-list">
+        <div className="input-group">
           <label htmlFor="product">Product Name</label>
           <input
             type="text"
@@ -59,7 +59,7 @@ const Product = () => {
             required
           />
         </div>
-        <div className="date-picker-wrapper">
+        <div className="input-group">
           <label htmlFor="date">Date</label>
           <input
             type="date"
@@ -70,17 +70,19 @@ const Product = () => {
             required
           />
         </div>
-        <label htmlFor="amount">Amount</label>
-        <input
-          type="number"
-          name="amount"
-          id="amount"
-          placeholder="Amount"
-          value={productData.amount}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit" className="submit-button">
+        <div className="input-group">
+          <label htmlFor="amount">Amount</label>
+          <input
+            type="number"
+            name="amount"
+            id="amount"
+            placeholder="Amount"
+            value={productData.amount}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit" className="submit-btn">
           Submit
         </button>
       </form>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ShowProduct.css";
 
-const ShowProductData = () => {
+const ProductDataDisplay = () => {
   const [productData, setProductData] = useState([]);
 
   useEffect(() => {
@@ -19,13 +19,13 @@ const ShowProductData = () => {
   }, []);
 
   return (
-    <div className="menu">
+    <div className="product-container">
       <h2>Product Data Report</h2>
       {productData.map((categoryData, index) => (
-        <div key={index}>
-          <h3>{categoryData.category}</h3>
+        <div key={index} className="category-section">
+          <h3 className="category-title">{categoryData.category}</h3>
           {categoryData.data.length > 0 ? (
-            <table className="data-table">
+            <table className="product-table">
               <thead>
                 <tr>
                   <th>Vendor</th>
@@ -54,4 +54,4 @@ const ShowProductData = () => {
   );
 };
 
-export default ShowProductData;
+export default ProductDataDisplay;

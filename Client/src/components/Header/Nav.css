@@ -24,11 +24,11 @@ body {
 
 .navbar-buttons {
   display: flex;
-  justify-content: center; /* Center the buttons container */
-  gap: 20px; /* Adjusted spacing between buttons */
+  justify-content: center;
+  gap: 20px;
   position: absolute;
-  right: 50%; /* Place buttons at the center of the navbar */
-  transform: translateX(50%); /* Fine-tune the centering */
+  right: 50%;
+  transform: translateX(50%);
 }
 
 .navbar-button {
@@ -49,4 +49,50 @@ body {
 
 .navbar-button:focus {
   outline: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar-title {
+    font-size: 1.2rem;
+  }
+
+  .navbar-buttons {
+    right: 0;
+    transform: translateX(0);
+    gap: 15px;
+  }
+
+  .navbar-button {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem 0.5rem;
+    height: 50px;
+  }
+
+  .navbar-title {
+    font-size: 1rem;
+  }
+
+  .navbar-buttons {
+    flex-direction: column;
+    align-items: center;
+    right: 0;
+    transform: translateX(0);
+    gap: 10px;
+  }
+
+  .navbar-button {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
 }

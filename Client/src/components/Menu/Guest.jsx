@@ -77,7 +77,7 @@ const Guest = () => {
         />
         <label htmlFor="check_in">Check-In</label>
         <input
-          type="datetime-local"
+          type="date"
           name="check_in"
           id="check_in"
           value={guestData.check_in}
@@ -86,7 +86,7 @@ const Guest = () => {
         />
         <label htmlFor="check_out">Check-Out</label>
         <input
-          type="datetime-local"
+          type="date"
           name="check_out"
           id="check_out"
           value={guestData.check_out}

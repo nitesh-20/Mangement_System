@@ -5,7 +5,7 @@
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 600px; /* Keeps the width as required */
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -14,8 +14,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: auto; /* Ensures it doesn't stretch vertically */
-  padding-bottom: 1rem; /* Adds space at the bottom */
+  height: auto;
+  padding-bottom: 1rem;
   box-sizing: border-box;
 }
 
@@ -50,7 +50,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  width: 100%; /* Make the button span the entire width */
+  width: 100%;
 }
 
 .submit-button:hover {
@@ -60,4 +60,44 @@
 .submit-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .guest-form-container {
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+
+  .guest-form input {
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+
+  .submit-button {
+    padding: 0.7rem 1.2rem;
+  }
+
+  .guest-form label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .guest-form-container {
+    max-width: 95%;
+    padding: 1rem;
+  }
+
+  .guest-form input {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .submit-button {
+    padding: 0.6rem 1rem;
+  }
+
+  .guest-form label {
+    font-size: 0.9rem;
+  }
 }
